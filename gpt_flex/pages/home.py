@@ -8,9 +8,9 @@ def home_page() -> rx.Component:
     return ui.base_layout(
         # rx.color_mode.button(position="bottom-left"),
         rx.vstack(
-            rx.heading("Welcome to Reflex GPT!", size="9"),
+            rx.heading("Welcome to THE PLAYGROUND!", size="9"),
             rx.text(
-                "Get started by editing ",
+                "LET'S PLAY!",
                 rx.code(f"{config.app_name}/{config.app_name}.py"),
                 size="5",
             ),
