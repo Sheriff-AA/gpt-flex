@@ -6,7 +6,7 @@ from gpt_flex import ui
 def home_page() -> rx.Component:
     # Welcome Page (Index)
     return ui.base_layout(
-        rx.color_mode.button(position="top-right"),
+        # rx.color_mode.button(position="bottom-left"),
         rx.vstack(
             rx.heading("Welcome to Reflex GPT!", size="9"),
             rx.text(
