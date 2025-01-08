@@ -3,3 +3,4 @@ reflex==0.6.7
 openai
 python-decouple
 groq
+psycopg2-binary
