@@ -21,6 +21,6 @@ def chat_form() -> rx.Component:
             )
         ),
         on_submit=ChatState.handle_submit,
-        reset_on_submit=False,
+        reset_on_submit=True,
     )
 

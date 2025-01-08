@@ -2,6 +2,7 @@ from typing import List
 import asyncio
 import reflex as rx
 
+from . import ai
 
 class ChatMessage(rx.Base):
     message: str
@@ -31,8 +32,27 @@ class ChatState(rx.State):
             self.did_submit = True
             self.append_message(user_message, False)
             yield
-            await asyncio.sleep(2)
+            gpt_messages = self.get_gpt_messages()
+            bot_response = ai.get_llm_response(gpt_messages)
+            # await asyncio.sleep(2)
             self.did_submit = False
-            self.append_message(user_message, True)
+            self.append_message(bot_response, True)
             yield
 
+    def get_gpt_messages(self):
+        gpt_messages = [
+            {
+                "role": "system",
+                "content": "You are an expert at creating recipies like an elite chef. Respond in markdown"
+            }
+        ]
+        for chat_message in self.messages:
+            role = 'user'
+            if chat_message.is_bot:
+                role = 'system'
+            gpt_messages.append({
+                'role': role,
+                'content': chat_message.message
+            })
+
+        return gpt_messages
