@@ -2,7 +2,7 @@ from typing import List
 import asyncio
 import reflex as rx
 
-from gpt_flex.models import Chat
+from gpt_flex.models import ChatSession as ChatModel
 from . import ai
 
 class ChatMessage(rx.Base):
@@ -20,12 +20,19 @@ class ChatState(rx.State):
     
     def on_load(self):
         with rx.session() as session:
-            results = session.exec(Chat.select()).all()
+            results = session.exec(ChatModel.select()).all()
             print(results)
 
     
     def append_message(self, message, is_bot: bool=False):
-        return self.messages.append(
+        # if not is_bot:
+        #     with rx.session() as session:
+        #         obj = ChatModel(
+        #             title=message
+        #         )
+        #         session.add(obj)
+        #         session.commit()
+        self.messages.append(
                 ChatMessage(
                     message=message,
                     is_bot=is_bot,
