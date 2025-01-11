@@ -48,7 +48,8 @@ def chat_page() -> rx.Component:
         rx.vstack(
             rx.hstack(
                 rx.heading("CHAT PAGE", size="5"),
-                rx.button("+ New Chat", on_click=ChatState.clear_and_start_new())
+                rx.cond(ChatState.not_found, "Not Found", "Found"),
+                rx.button("+ New Chat", on_click=ChatState.create_new_and_redirect)
             ),
             rx.box(
                 rx.foreach(ChatState.messages,  message_box),
