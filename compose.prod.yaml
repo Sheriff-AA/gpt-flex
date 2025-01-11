@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    image: codingforentrepreneurs/reflex-gpt:latest
+    image: sherifprod/gpt-flex:latest
     env_file:
       - .env
     ports:
@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    image: codingforentrepreneurs/reflex-gpt:latest
+    image: sherifprod/gpt-gpt:latest
     env_file:
       - .env
     ports:
